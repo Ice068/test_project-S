@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เรียนรู้ HTML - สื่อการสอนสำหรับม.6</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
+
+<!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="logo">📚 เรียนรู้ HTML</div>
             <button class="close-btn" id="closeSidebar">✕</button>
         </div>
         <nav class="nav-menu">
-            <a href="#home" class="nav-link active" data-page="home">
+            <a href="index.html" class="nav-link active" data-page="home">
                 <span class="icon">🏠</span>
                 <span>หน้าแรก</span>
             </a>
-            <a href="#lessons" class="nav-link" data-page="lessons">
+            <a href="lessons.html" class="nav-link" data-page="lessons">
                 <span class="icon">📖</span>
                 <span>บทเรียน</span>
             </a>
-            <a href="#editor" class="nav-link" data-page="editor">
+            <a href="editor.html" class="nav-link" data-page="editor">
                 <span class="icon">💻</span>
                 <span>ฝึกเขียนโค้ด</span>
             </a>
-            <a href="#quiz" class="nav-link" data-page="quiz">
+            <a href="quiz.html" class="nav-link" data-page="quiz">
                 <span class="icon">📝</span>
                 <span>แบบทดสอบ</span>
             </a>
-            <a href="#progress" class="nav-link" data-page="progress">
+            <a href="results.html" class="nav-link" data-page="progress">
                 <span class="icon">📊</span>
                 <span>ความคืบหน้า</span>
             </a>
         </nav>
-        <div style="padding:10px;">
-    <a href="login.html" class="btn btn-primary w-full mb-2">Login</a>
-    <a href="signup.html" class="btn btn-secondary w-full">Sign up</a>
-</div>
     </aside>
 
-    <!-- Mobile Menu Button -->
+     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
 
     <!-- Main Content -->
@@ -100,143 +95,40 @@
                 </div>
             </div>
         </div>
+<!-- Mobile Button -->
+<button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
 
-        <!-- Lessons Page -->
-        <div id="lessons-page" class="page">
-            <div class="container">
-                <h1 class="page-title">บทเรียน HTML</h1>
-                <p class="page-subtitle">เลือกบทเรียนที่ต้องการศึกษา</p>
-                <div id="lessons-list" class="lessons-grid"></div>
-            </div>
-        </div>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">📘 Learn HTML</div>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  </div>
 
-        <!-- Lesson Detail Page -->
-        <div id="lesson-detail-page" class="page">
-            <div class="container">
-                <button class="btn btn-secondary mb-4" onclick="navigateTo('lessons')">← กลับไปบทเรียน</button>
-                <div id="lesson-content"></div>
-            </div>
-        </div>
+  <div class="nav-menu">
+    <a href="index.html" class="nav-link active">🏠 หน้าแรก</a>
+    <a href="lessons.html" class="nav-link">📘 บทเรียน</a>
+    <a href="editor.html" class="nav-link">💻 Editor</a>
+    <a href="quiz.html" class="nav-link">📝 Quiz</a>
+    <a href="results.html" class="nav-link">🏆 Results</a>
 
-        <!-- Code Editor Page -->
-        <div id="editor-page" class="page">
-            <div class="container">
-                <h1 class="page-title">ฝึกเขียนโค้ด HTML</h1>
-                <p class="page-subtitle">เขียนโค้ด HTML และดูผลลัพธ์แบบ Real-time</p>
-                
-                <div class="editor-layout">
-                    <div class="editor-sidebar">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>โค้ด HTML</h3>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-primary" onclick="runCode()">▶ รันโค้ด</button>
-                                    <button class="btn btn-sm btn-secondary" onclick="resetCode()">↻ รีเซ็ต</button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <textarea id="code-editor" class="code-editor" spellcheck="false"></textarea>
-                            </div>
-                        </div>
+    <hr>
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>📚 ตัวอย่างโค้ด</h3>
-                            </div>
-                            <div class="card-body">
-                                <div id="examples-list" class="examples-list"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="editor-main">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>ผลลัพธ์</h3>
-                            </div>
-                            <div class="card-body">
-                                <div id="preview-container" class="preview-container">
-                                    <iframe id="preview-iframe" sandbox="allow-scripts"></iframe>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tips-box">
-                            <h3>💡 เคล็ดลับ</h3>
-                            <ul>
-                                <li>เขียนโค้ดในช่องด้านซ้าย</li>
-                                <li>กดปุ่ม "รันโค้ด" เพื่อดูผลลัพธ์</li>
-                                <li>ลองแก้ไขโค้ดดูว่าเกิดอะไรขึ้น</li>
-                                <li>ใช้ตัวอย่างโค้ดเป็นแนวทาง</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quiz Page -->
-        <div id="quiz-page" class="page">
-            <div class="container">
-                <h1 class="page-title">แบบทดสอบ HTML</h1>
-                <p class="page-subtitle">ทดสอบความรู้ที่คุณได้เรียนมา</p>
-                
-                <div id="quiz-container"></div>
-            </div>
-        </div>
-
-        <!-- Progress Page -->
-        <div id="progress-page" class="page">
-            <div class="container">
-                <h1 class="page-title">ความคืบหน้าการเรียนรู้</h1>
-                <p class="page-subtitle">ติดตามผลการเรียนของคุณ</p>
-                
-                <div class="progress-content">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>ความคืบหน้าโดยรวม</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="progress-circle">
-                                <svg width="200" height="200">
-                                    <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="12"/>
-                                    <circle id="progress-circle" cx="100" cy="100" r="90" fill="none" stroke="url(#gradient)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 100 100)"/>
-                                    <defs>
-                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#9333ea"/>
-                                            <stop offset="100%" style="stop-color:#ec4899"/>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                                <div class="progress-text">
-                                    <span id="overall-progress">0%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>บทเรียนที่เรียนจบแล้ว</h3>
-                        </div>
-                        <div class="card-body">
-                            <div id="completed-lessons-list" class="completed-lessons"></div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>ผลคะแนนแบบทดสอบ</h3>
-                        </div>
-                        <div class="card-body">
-                            <div id="quiz-results" class="quiz-results"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <a href="login.html" class="nav-link">🔐 Login</a>
+    <a href="signup.html" class="nav-link">📝 Signup</a>
+  </div>
+</div>
     </main>
+</div>
 
-    <script src="script.js"></script>
+<!-- JS -->
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+
+<script src="main.js"></script>
+
 </body>
 </html>

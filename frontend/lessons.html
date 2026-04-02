@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทเรียน</title>
+
+    <!-- 🔥 ต้องใช้ path ให้ตรง -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Mobile Button -->
+<button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">📘 Learn HTML</div>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  </div>
+
+  <div class="nav-menu">
+    <a href="index.html" class="nav-link">🏠 หน้าแรก</a>
+    <a href="lessons.html" class="nav-link active">📘 บทเรียน</a>
+    <a href="editor.html" class="nav-link">💻 Editor</a>
+    <a href="quiz.html" class="nav-link">📝 Quiz</a>
+    <a href="results.html" class="nav-link">🏆 Results</a>
+
+    <hr>
+
+    <a href="login.html" class="nav-link">🔐 Login</a>
+    <a href="signup.html" class="nav-link">📝 Signup</a>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <div class="container">
+
+    <h1 class="page-title">📘 บทเรียน HTML</h1>
+    <p class="page-subtitle">เลือกบทเรียนที่ต้องการเรียน</p>
+
+    <div class="lessons-grid">
+
+      <div class="lesson-card">
+        <div class="lesson-icon">📄</div>
+        <div class="lesson-title">บทที่ 1: พื้นฐาน HTML</div>
+        <div class="lesson-description">รู้จัก HTML เบื้องต้น</div>
+        <span class="lesson-duration">10 นาที</span>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-icon">🔤</div>
+        <div class="lesson-title">Headings & Paragraphs</div>
+        <div class="lesson-description">การใช้ h1 - p</div>
+        <span class="lesson-duration">15 นาที</span>
+      </div>
+
+      <div class="lesson-card">
+        <div class="lesson-icon">🔗</div>
+        <div class="lesson-title">Links & Images</div>
+        <div class="lesson-description">ลิงก์และรูปภาพ</div>
+        <span class="lesson-duration">20 นาที</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+</script>
+
+<script src="main.js"></script>
+
+</body>
+</html>

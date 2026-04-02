@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor</title>
+
+    <!-- 🔥 แก้ path -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Mobile Button -->
+<button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">📘 Learn HTML</div>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  </div>
+
+  <div class="nav-menu">
+    <a href="index.html" class="nav-link">🏠 หน้าแรก</a>
+    <a href="lessons.html" class="nav-link">📘 บทเรียน</a>
+    <a href="editor.html" class="nav-link active">💻 Editor</a>
+    <a href="quiz.html" class="nav-link">📝 Quiz</a>
+    <a href="results.html" class="nav-link">🏆 Results</a>
+
+    <hr>
+
+    <a href="login.html" class="nav-link">🔐 Login</a>
+    <a href="signup.html" class="nav-link">📝 Signup</a>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main-content">
+  <div class="container">
+
+    <h1 class="page-title">💻 Code Editor</h1>
+    <p class="page-subtitle">ทดลองเขียน HTML แล้วดูผลลัพธ์ทันที</p>
+
+    <div class="editor-layout">
+
+      <!-- Code -->
+      <div>
+        <h3>✍️ เขียนโค้ด</h3>
+        <textarea id="code" class="code-editor">
+<h1>Hello HTML</h1>
+<p>ลองแก้โค้ดดู</p>
+        </textarea>
+
+        <br>
+        <button class="btn btn-primary" onclick="runCode()">Run</button>
+      </div>
+
+      <!-- Preview -->
+      <div>
+        <h3>👀 Preview</h3>
+        <div class="preview-container">
+          <iframe id="preview-iframe"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 🔥 Examples -->
+    <div class="card">
+      <div class="card-header">
+        <h3>📚 ตัวอย่างโค้ด</h3>
+      </div>
+
+      <div class="card-body examples-list">
+        <button class="example-btn" onclick="loadExample(1)">Heading</button>
+        <button class="example-btn" onclick="loadExample(2)">Image</button>
+        <button class="example-btn" onclick="loadExample(3)">Link</button>
+      </div>
+    </div>
+
+    <!-- 🔥 Tips -->
+    <div class="tips-box">
+      <h3>💡 Tips</h3>
+      <ul>
+        <li>ใช้ &lt;h1&gt; สำหรับหัวข้อ</li>
+        <li>ใช้ &lt;p&gt; สำหรับข้อความ</li>
+        <li>กด Run เพื่อดูผลลัพธ์</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+function runCode() {
+  const code = document.getElementById("code").value;
+  document.getElementById("preview-iframe").srcdoc = code;
+}
+
+function loadExample(type) {
+  let code = "";
+
+  if (type === 1) {
+    code = "<h1>Hello World</h1>";
+  } else if (type === 2) {
+    code = "<img src='https://via.placeholder.com/150'>";
+  } else if (type === 3) {
+    code = "<a href='https://google.com'>Go to Google</a>";
+  }
+
+  document.getElementById("code").value = code;
+}
+</script>
+
+<script src="main.js"></script>
+
+</body>
+</html>

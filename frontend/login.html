@@ -2,32 +2,67 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 🔥 แก้ path -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<body class="flex justify-center items-center h-screen bg-gray-100">
+<!-- Mobile Button -->
+<button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
 
-<div class="bg-white p-6 rounded shadow w-80">
-    <h2 class="text-xl font-bold mb-4 text-center">เข้าสู่ระบบ</h2>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">📘 Learn HTML</div>
+    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  </div>
 
-    <input id="email" type="email" placeholder="Email"
-        class="w-full mb-3 p-2 border rounded">
+  <div class="nav-menu">
+    <a href="index.html" class="nav-link">🏠 หน้าแรก</a>
+    <a href="lessons.html" class="nav-link">📘 บทเรียน</a>
+    <a href="editor.html" class="nav-link">💻 Editor</a>
+    <a href="quiz.html" class="nav-link">📝 Quiz</a>
+    <a href="results.html" class="nav-link">🏆 Results</a>
 
-    <input id="password" type="password" placeholder="Password"
-        class="w-full mb-3 p-2 border rounded">
+    <hr>
 
-    <button onclick="login()"
-        class="w-full bg-purple-600 text-white p-2 rounded">
-        Login
-    </button>
-
-    <p class="text-center mt-3">
-        ยังไม่มีบัญชี?
-        <a href="signup.html" class="text-blue-500">สมัครสมาชิก</a>
-    </p>
+    <a href="login.html" class="nav-link active">🔐 Login</a>
+    <a href="signup.html" class="nav-link">📝 Signup</a>
+  </div>
 </div>
 
-<script src="auth.js"></script>
+<!-- 🔥 Modal ครอบทั้งหน้า -->
+<div class="modal">
+  <div class="modal-content">
+    <h2>🔐 Login</h2>
+
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+
+    <button class="btn btn-primary" onclick="login()">Login</button>
+
+    <p style="text-align:center;">
+      ยังไม่มีบัญชี? <a href="signup.html">สมัครสมาชิก</a>
+    </p>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+function login() {
+  alert("Login สำเร็จ");
+  window.location.href = "index.html";
+}
+</script>
+
+<script src="main.js"></script>
+
 </body>
 </html>
