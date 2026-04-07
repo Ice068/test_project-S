@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ทดลองโค้ด</title>
+  <link rel="stylesheet" href="playground.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Dev <span>HQ</span></h2>
+    <ul>
+      <li><a href="dashboard.html">🏠 หน้าแรก</a></li>
+      <li><a href="quests.html">⚔️ ภารกิจ</a></li>
+      <li class="active">💻 ทดลองโค้ด</li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <h1>💻 ทดลองเขียนโค้ด</h1>
+
+    <div class="editor-container">
+
+      <!-- Code Editor -->
+      <div class="editor">
+        <h3>HTML</h3>
+        <textarea id="htmlCode">
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello World</h1>
+    <p>ลองแก้โค้ดดู 🚀</p>
+  </body>
+</html>
+        </textarea>
+
+        <button onclick="runCode()">▶ Run</button>
+      </div>
+
+      <!-- Preview -->
+      <div class="preview">
+        <h3>Preview</h3>
+        <iframe id="previewFrame"></iframe>
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script src="playground.js"></script>
+</body>
+</html>

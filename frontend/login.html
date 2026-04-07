@@ -1,68 +1,55 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-
-    <!-- 🔥 แก้ path -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Dev Login</title>
 </head>
 <body>
 
-<!-- Mobile Button -->
-<button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="background"></div>
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <div class="logo">📘 Learn HTML</div>
-    <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <div class="login-card">
+    <div class="login">
+      <div class="icon">🎮</div>
+      <h1>Dev <span>HQ</span></h1>
+    </div>
+
+    <!-- Tabs (เหลืออันเดียว) -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="login">Login</button>
+      <button class="tab-btn" data-tab="signup">Signup</button>
+    </div>
+
+    <!-- Login -->
+    <form id="loginForm" class="form active">
+      <label>ชื่อผู้ใช้</label>
+      <input type="text" id="loginUser">
+
+      <label>รหัสผ่าน</label>
+      <input type="password" id="loginPass">
+
+      <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
+    </form>
+
+    <!-- Signup -->
+    <form id="signupForm" class="form">
+      <label>ชื่อผู้ใช้</label>
+      <input type="text" id="signupUser">
+
+      <label>รหัสผ่าน</label>
+      <input type="password" id="signupPass">
+
+      <label>ยืนยันรหัสผ่าน</label>
+      <input type="password" id="signupConfirm">
+
+      <button type="submit" class="login-btn">สมัครสมาชิก</button>
+    </form>
+
   </div>
 
-  <div class="nav-menu">
-    <a href="index.html" class="nav-link">🏠 หน้าแรก</a>
-    <a href="lessons.html" class="nav-link">📘 บทเรียน</a>
-    <a href="editor.html" class="nav-link">💻 Editor</a>
-    <a href="quiz.html" class="nav-link">📝 Quiz</a>
-    <a href="results.html" class="nav-link">🏆 Results</a>
-
-    <hr>
-
-    <a href="login.html" class="nav-link active">🔐 Login</a>
-    <a href="signup.html" class="nav-link">📝 Signup</a>
-  </div>
-</div>
-
-<!-- 🔥 Modal ครอบทั้งหน้า -->
-<div class="modal">
-  <div class="modal-content">
-    <h2>🔐 Login</h2>
-
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-
-    <button class="btn btn-primary" onclick="login()">Login</button>
-
-    <p style="text-align:center;">
-      ยังไม่มีบัญชี? <a href="signup.html">สมัครสมาชิก</a>
-    </p>
-  </div>
-</div>
-
-<!-- JS -->
-<script>
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
-}
-
-function login() {
-  alert("Login สำเร็จ");
-  window.location.href = "index.html";
-}
-</script>
-
-<script src="main.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>

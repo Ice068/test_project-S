@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashbord</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Sidebar content -->
+         <aside class="sidebar">
+         <h2>Dev <span>HQ</span></h2>
+
+         <ul>
+            <li class="active">🏠 ฐานบัญชาการ</li>
+            <li><a href="quests.html">⚔️ ภารกิจ</a></li>
+            <li><a href="playground.html">💻 ทดลองโค้ด</a></li>
+            <li>🏆 จัดอันดับ</li>
+         </ul>
+
+         <div class="bottom">
+            <button onclick="logout()">ออกจากระบบ</button>
+         </div>
+         </aside>
+
+        <!-- Main content -->
+         <main class="main">
+            <h1>ยินดีต้อนรับ ผู้บัญชาการ <span id="username">User</span></h1>
+
+            <!-- Starts -->
+             <div class="cards">
+                <div class="card">
+                    <p>Exp</p>
+                    <h2>0</h2>
+                </div>
+                <div class="card">
+                    <p>เควสทั้งหมด</p>
+                    <h2>0/6</h2>
+                </div>
+                <div class="card">
+                    <p>บอสที่ชนะ</p>
+                    <h2>0/3</h2>
+                </div>
+                <div class="card">
+                    <p>Ranks</p>
+                    <h2>Bronze</h2>
+                </div>
+             </div>
+             <!-- Quest-->
+              <div class="quest-box">
+                <h3>ภารกิจหลัก</h3>
+
+                <div class="quest">
+                    <div>
+                        <h4>โครงสร้าง HTML</h4>
+                        <p>สร้างหน้าเว็บ Hello World</p>
+                    </div>
+                    <button>เริ่มภารกิจ</button>
+                </div>
+              </div>
+         </main>
+
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
