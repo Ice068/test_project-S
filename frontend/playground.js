@@ -1,48 +1,9 @@
+// =======================
+// SANITIZE (เบาลง ให้ยังเขียนได้)
+// =======================
 function sanitizeHTML(html) {
-  // ❌ ลบ script tag
-  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
-
-  // ❌ ลบ event handler เช่น onclick=
-  html = html.replace(/on\w+="[^"]*"/gi, "");
-
-  // ❌ ลบ javascript: URL
-  html = html.replace(/javascript:/gi, "");
-
-  return html;
-}
-
-function runCode() {
-  const rawCode = document.getElementById("htmlCode").value;
-
-  // sanitize ก่อน
-  const safeCode = sanitizeHTML(rawCode);
-
-  const frame = document.getElementById("previewFrame");
-
-  // ใช้ srcdoc + sandbox
-  frame.setAttribute(
-    "srcdoc",
-    `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <style>
-        body { font-family: sans-serif; padding:10px; }
-      </style>
-    </head>
-    <body>
-      ${safeCode}
-    </body>
-    </html>
-    `
-  );
-}
-
-function sanitizeHTML(html) {
-  html = html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
-  html = html.replace(/on\w+="[^"]*"/gi, "");
-  html = html.replace(/javascript:/gi, "");
-  return html;
+  // ลบเฉพาะ script (ปลอดภัย)
+  return html.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
 }
 
 // =======================
@@ -55,8 +16,19 @@ function runCode() {
   const frame = document.getElementById("previewFrame");
 
   frame.srcdoc = `
+    <!DOCTYPE html>
     <html>
-      <body>${safeCode}</body>
+    <head>
+      <style>
+        body {
+          font-family: sans-serif;
+          padding: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      ${safeCode}
+    </body>
     </html>
   `;
 
@@ -64,48 +36,51 @@ function runCode() {
 }
 
 // =======================
-// QUEST CHECK SYSTEM 🔥
+// QUEST SYSTEM
 // =======================
 function checkQuest(code) {
   const status = document.getElementById("status");
   const hint = document.getElementById("hint");
 
-  // เควส: ต้องมี <h1>Hello World</h1>
+  if (!status || !hint) return;
+
   const hasH1 = /<h1>(.*?)<\/h1>/i.test(code);
   const hasHello = /hello world/i.test(code);
 
   if (!hasH1) {
     status.innerText = "❌ ยังไม่สำเร็จ";
     status.className = "error";
-    hint.innerText = "💡 ต้องมีแท็ก <h1>";
+    hint.innerText = "💡 ต้องมี <h1>";
     return;
   }
 
   if (!hasHello) {
     status.innerText = "❌ ยังไม่สำเร็จ";
     status.className = "error";
-    hint.innerText = "💡 ต้องมีคำว่า Hello World";
+    hint.innerText = "💡 ต้องมี Hello World";
     return;
   }
 
-  // ✅ สำเร็จ
-  status.innerText = "✅ เควสสำเร็จ!";
+  status.innerText = "✅ สำเร็จ!";
   status.className = "success";
-  hint.innerText = "🎉 เก่งมาก! ได้ +50 EXP";
+  hint.innerText = "🎉 +50 EXP";
 
   addExp(50);
 }
 
 // =======================
-// EXP SYSTEM
+// EXP
 // =======================
 function addExp(amount) {
   let exp = localStorage.getItem("exp") || 0;
   exp = parseInt(exp) + amount;
-
   localStorage.setItem("exp", exp);
 }
 
+// =======================
+// AUTO RUN ตอนพิมพ์ (สำคัญมาก)
+// =======================
+document.getElementById("htmlCode").addEventListener("input", runCode);
 
-// auto run
+// โหลดครั้งแรก
 window.onload = runCode;

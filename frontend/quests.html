@@ -12,31 +12,39 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <h2 class="logo">Dev <span>Quests</span></h2>
+    <h2>Dev <span>Quests</span></h2>
 
     <ul>
-      <li><a href="dashboard.html">🏠 ฐานบัญชาการ</a></li>
-      <li class="active">⚔️ ภารกิจ (Quests)</li>
-      <li>💻 ลานประลองโค้ด</li>
-      <li>🏆 กระดานผู้นำ</li>
+      <li>
+        <a href="dashboard.html">🏠 ฐานบัญชาการ</a>
+      </li>
+
+      <li class="active">
+        <a href="quests.html">⚔️ ภารกิจ (Quests)</a>
+      </li>
+
+      <li>
+        <a href="playground.html">💻 ทดลองโค้ด</a>
+      </li>
+
+      <li><a href="quizzes.html">🏆 แบบทดสอบท้ายบท</a></li>
     </ul>
 
-             <div class="bottom">
-            <button onclick="logout()">ออกจากระบบ</button>
-         </div>
-         </aside>
+    <div class="bottom">
+      <button onclick="logout()">ออกจากระบบ</button>
+    </div>
   </aside>
 
   <!-- Main -->
   <main class="main">
 
-    <h1>ยินดีต้อนรับ <span id="username"></span></h1>
+    <h1>ยินดีต้อนรับ <span id="username">User</span></h1>
 
     <div class="cards">
 
       <!-- Daily -->
       <div class="card">
-        <h2>⏱ ภารกิจรายวัน</h2>
+        <h2>📅 ภารกิจรายวัน</h2>
 
         <div class="quest">
           <p>นักล่าบั๊กประจำวัน</p>
@@ -80,5 +88,6 @@
 
 <script src="dashboard.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>

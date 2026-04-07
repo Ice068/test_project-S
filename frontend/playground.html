@@ -12,12 +12,18 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <h2>Dev <span>HQ</span></h2>
+    <h2>Dev <span>Sim</span></h2>
+
     <ul>
       <li><a href="dashboard.html">🏠 หน้าแรก</a></li>
       <li><a href="quests.html">⚔️ ภารกิจ</a></li>
-      <li class="active">💻 ทดลองโค้ด</li>
+      <li class="active"><a href="playground.html">💻 ทดลองโค้ด</a></li>
+      <li><a href="quizzes.html">🏆 แบบทดสอบท้ายบท</a></li>
     </ul>
+
+    <div class="bottom">
+      <button onclick="logout()">ออกจากระบบ</button>
+    </div>
   </aside>
 
   <!-- Main -->
@@ -27,26 +33,36 @@
 
     <div class="editor-container">
 
-      <!-- Code Editor -->
-      <div class="editor">
-        <h3>HTML</h3>
-        <textarea id="htmlCode">
-<!DOCTYPE html>
+      <!-- Editor -->
+      <div class="card editor">
+        <h3>HTML Editor</h3>
+
+        <div class="editor-box">
+<textarea id="htmlCode"><!DOCTYPE html>
 <html>
   <body>
     <h1>Hello World</h1>
     <p>ลองแก้โค้ดดู 🚀</p>
   </body>
-</html>
-        </textarea>
+</html></textarea>
+        </div>
 
-        <button onclick="runCode()">▶ Run</button>
+        <button onclick="runCode()">▶ Run Code</button>
+
+        <!-- 🔥 เพิ่มส่วนแสดงผล Quest -->
+        <div class="quest-result">
+          <p id="status"></p>
+          <p id="hint"></p>
+        </div>
       </div>
 
       <!-- Preview -->
-      <div class="preview">
+      <div class="card preview">
         <h3>Preview</h3>
-        <iframe id="previewFrame"></iframe>
+
+        <div class="preview-box">
+          <iframe id="previewFrame"></iframe>
+        </div>
       </div>
 
     </div>
