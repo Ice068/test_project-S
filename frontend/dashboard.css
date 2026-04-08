@@ -231,3 +231,20 @@ body{
         grid-template-columns:1fr;
     }
 }
+
+/* QUIZ */
+input[type="radio"]{
+    margin-right:8px;
+}
+
+.quest label{
+    display:block;
+    margin-top:6px;
+    cursor:pointer;
+}
+
+#result{
+    margin-top:15px;
+    font-weight:bold;
+    color:#22d3ee;
+}

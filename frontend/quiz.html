@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แบบทดสอบ</title>
+<link rel="stylesheet" href="dashboard.css"> 
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Dev <span>Sim</span></h2>
+
+    <ul>
+      <li><a href="dashboard.html">🏠 หน้าแรก</a></li>
+      <li><a href="quests.html">⚔️ ภารกิจ</a></li>
+      <li><a href="playground.html">💻 ทดลองโค้ด</a></li>
+      <li class="active"><a href="quests.html">🏆 แบบทดสอบ</a></li>
+    </ul>
+
+    <div class="bottom">
+      <button>ออกจากระบบ</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <h1>🏆 แบบทดสอบ HTML</h1>
+
+    <div class="card">
+
+      <form id="quizForm">
+
+        <!-- Q1 -->
+        <div class="quest">
+          <div>
+            <p>1. แท็กใดใช้สร้างหัวเรื่อง?</p>
+            <label><input type="radio" name="q1" value="a"> &lt;p&gt;</label><br>
+            <label><input type="radio" name="q1" value="b"> &lt;h1&gt;</label><br>
+            <label><input type="radio" name="q1" value="c"> &lt;div&gt;</label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quest">
+          <div>
+            <p>2. แท็กใดใช้สร้างลิงก์?</p>
+            <label><input type="radio" name="q2" value="a"> &lt;a&gt;</label><br>
+            <label><input type="radio" name="q2" value="b"> &lt;img&gt;</label><br>
+            <label><input type="radio" name="q2" value="c"> &lt;span&gt;</label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quest">
+          <div>
+            <p>3. HTML ย่อมาจากอะไร?</p>
+            <label><input type="radio" name="q3" value="a"> Hyper Tool Markup Language</label><br>
+            <label><input type="radio" name="q3" value="b"> Hyper Text Markup Language</label><br>
+            <label><input type="radio" name="q3" value="c"> High Text Machine Language</label>
+          </div>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">ส่งคำตอบ</button>
+
+      </form>
+
+      <p id="result"></p>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script src="quiz.js"></script>
+
+</body>
+</html>
