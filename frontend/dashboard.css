@@ -248,3 +248,35 @@ input[type="radio"]{
     font-weight:bold;
     color:#22d3ee;
 }
+pre{
+    background:#020617;
+    padding:15px;
+    border-radius:12px;
+    overflow-x:auto;
+    font-size:14px;
+    line-height:1.5;
+    box-shadow:0 0 10px rgba(0,255,255,0.1);
+}
+.main{
+    flex:1;
+    padding:30px;
+    overflow-y:auto; /* 👈 เพิ่มบรรทัดนี้ */
+}
+button{
+    font-weight:500;
+    letter-spacing:0.5px;
+}
+.quest-box{
+    animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
