@@ -1,79 +1,93 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
-    <title>Dashbord</title>
 </head>
 <body>
-    <div class="container">
+    <!-- Sidebar -->
+     <div class="sidebar">
+        <div class="logo">Dev <span>Dashboard</span></div>
 
-        <!-- Sidebar content -->
-         <aside class="sidebar">
-         <h2>Dev <span>HQ</span></h2>
+        <div class="menu">
+            <a class="active">🏠 ฐานบัญชาการ</a>
+            <a href="mission.html">⚔️ ภารกิจ</a>
+            <a href="simcode.html">💻 จำลองโค้ด</a>
+            <a href="rank.html">🏆 จัดอันดับ</a>
 
-         <ul>
-            <li class="active">🏠 ฐานบัญชาการ</li>
-            <li><a href="quests.html">⚔️ ภารกิจ</a></li>
-            <li><a href="playground.html">💻 ทดลองโค้ด</a></li>
-            <li><a href="quizzes.html">🏆 แบบทดสอบท้ายบท</a></li>
-         </ul>
+        </div>
+        <button class="logout" onclick="logout()">ออกจากระบบ</button>
+     </div>
 
-         <div class="bottom">
-            <button onclick="logout()">ออกจากระบบ</button>
-         </div>
-         </aside>
+    <!-- Main Content -->
+     <div class="main">
 
-        <!-- Main content -->
-         <main class="main">
-            <h1>ยินดีต้อนรับ ผู้บัญชาการ <span id="username">User</span></h1>
+  <div class="header">ยินดีต้อนรับ <span id="userName">User</span></div>
 
-            <!-- Starts -->
-             <div class="cards">
-                <div class="card">
-                    <p>Exp</p>
-                    <h2>0</h2>
-                </div>
-                <div class="card">
-                    <p>เควสทั้งหมด</p>
-                    <h2>0/6</h2>
-                </div>
-                <div class="card">
-                    <p>บอสที่ชนะ</p>
-                    <h2>0/3</h2>
-                </div>
-                <div class="card">
-                    <p>Ranks</p>
-                    <h2>Bronze</h2>
-                </div>
-             </div>
-             <!-- Quest-->
-              <div class="quest-box">
-                <h3>ภารกิจหลัก</h3>
-
-                <div class="quest">
-                    <div>
-                        <h4>โครงสร้าง HTML</h4>
-                        <p>สร้างหน้าเว็บ Hello World</p>
-                    </div>
-                    <button onclick="completeQuest()">เริ่มภารกิจ</button>
-                </div>
-              </div>
-              <br>
-
-              <div class="quest">
-                <div>
-                    <h4>เนื้อหา HTML</h4>
-                    <p>เนื้อหาเกี่ยวกับ HTML</p>
-                    <div>
-                        <button onclick="startStudy()">เริ่มเรียน</button>
-                    </div>
-                </div>
-              </div>
-         </main>
-
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card">
+      <h3>EXP รวม</h3>
+      <div class="big">0</div>
     </div>
-    <script src="dashboard.js"></script>
+
+    <div class="card">
+      <h3>เควสที่จบ</h3>
+      <div class="big">0/6</div>
+    </div>
+
+    <div class="card">
+      <h3>บอสที่ชนะ</h3>
+      <div class="big">2</div>
+    </div>
+
+    <div class="card">
+      <h3>แรงค์ปัจจุบัน</h3>
+      <div class="big">Bronze</div>
+    </div>
+  </div>
+
+  <!-- Content -->
+   <div class="content">
+
+    <!--Quest-->
+    <div class="quest">
+        <h3>⚔️ ภารกิจหลัก</h3>
+
+<div class="quest-item">
+    <h4>เรียนรู้โครงสร้างโค้ดพื้นฐาน</h4>
+    <p>เขียนโครงสร้าง HTML</p>
+    <span class="badge">+50 EXP</span>
+    <a href="lesson1.html" class="start-btn">ลุยเลย 🚀</a>
+</div>
+
+<div class="quest-item">
+    <h4>เรียนรู้การสร้าง Link</h4>
+    <p>สร้างลิงก์ไปยังหน้าอื่น</p>
+    <span class="badge">+30 EXP</span>
+    <a href="lesson2.html" class="start-btn">ลุยเลย 🚀</a>
+</div>
+
+<div class="quest-item">
+    <h4>เรียนรู้การใช้งาน Heading</h4>
+    <p>สร้างหัวข้อด้วย H1-H6</p>
+    <span class="badge">+20 EXP</span>
+    <a href="lesson3.html" class="start-btn">ลุยเลย 🚀</a>
+</div>
+
+    <!-- Profile -->
+     <div class="profile">
+        <img src="https://i.imgur.com/6VBx3io.png">
+        <div class="level">Lv.0</div>
+        <h2 id="profileName">User</h2>
+        <p>Rookie Front-end</p>
+     </div>
+    </div>
+   </div>
+  
+<script src="dashboard.js"></script>
+    
 </body>
 </html>

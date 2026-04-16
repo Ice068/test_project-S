@@ -3,54 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Dev Login</title>
+  <title>DevQuest Login</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
-  <div class="background"></div>
+<div class="background"></div>
 
-  <div class="login-card">
-    <div class="login">
-      <div class="icon">🎮</div>
-      <h1>Dev <span>HQ</span></h1>
-    </div>
+<div class="card">
+  <div class="logo">🎮 Dev<span>Quest</span></div>
 
-    <!-- Tabs (เหลืออันเดียว) -->
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="login">Login</button>
-      <button class="tab-btn" data-tab="signup">Signup</button>
-    </div>
-
-    <!-- Login -->
-    <form id="loginForm" class="form active">
-      <label>ชื่อผู้ใช้</label>
-      <input type="text" id="loginUser">
-
-      <label>รหัสผ่าน</label>
-      <input type="password" id="loginPass">
-
-      <button type="submit" class="login-btn">เข้าสู่ระบบ</button>
-    </form>
-
-    <!-- Signup -->
-    <form id="signupForm" class="form">
-      <label>ชื่อผู้ใช้</label>
-      <input type="text" id="signupUser">
-
-      <label>รหัสผ่าน</label>
-      <input type="password" id="signupPass">
-
-      <label>ยืนยันรหัสผ่าน</label>
-      <input type="password" id="signupConfirm">
-
-      <button type="submit" class="login-btn">สมัครสมาชิก</button>
-    </form>
-
+  <div class="tabs">
+    <button id="loginTab" class="active">เข้าสู่ระบบ</button>
+    <button id="signupTab">สร้างบัญชี</button>
   </div>
 
-  <script src="script.js"></script>
-  <script src="login.js"></script>
+  <form id="form">
 
+    <div class="input-group" id="emailGroup" style="display:none;">
+      <label>อีเมล</label>
+      <input type="email" id="email" placeholder="example@email.com">
+    </div>
+
+    <div class="input-group">
+      <label>ชื่อผู้ใช้</label>
+      <input type="text" id="username" placeholder="ใส่ชื่อของคุณ..." required>
+    </div>
+
+    <div class="input-group">
+      <label>รหัสผ่าน</label>
+      <input type="password" id="password" placeholder="ใส่รหัสผ่าน..." required>
+    </div>
+
+    <div class="input-group" id="confirmGroup" style="display:none;">
+      <label>ยืนยันรหัสผ่าน</label>
+      <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่าน">
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn">ลุยเลย! (Login)</button>
+  </form>
+
+  <p id="message"></p>
+</div>
+
+<script src="login.js"></script>
 </body>
 </html>
