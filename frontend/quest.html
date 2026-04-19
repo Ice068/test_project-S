@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevQuest</title>
+    <link rel="stylesheet" href="quest.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+         <aside class="sidebar">
+            <h2 class="logo">Dev <span>Quest</span></h2>
+
+            <nav class="menu">
+                <a href="dashboard.html">🏠 ฐานบัญชาการ</a>
+                <a href="quest.html" class="active">⚔️ ภารกิจ</a>
+                <a href="simcode.html">💻 จำลองโค้ด</a>
+                <a href="progress.html">📊 ข้อมูล</a>
+            </nav>
+
+            <button class="logout" onclick="logout()">ออกจากระบบ</button>
+         </aside>
+
+         <!-- Main -->
+          <main class="main">
+            <h1>⚔️ ภารกิจของคุณ</h1>
+            <div class="quests">
+                <!-- Quest 1 -->
+                 <div class="quest-card">
+                    <h3>🧱 HTML Structure</h3>
+                    <p>สร้างโครงสร้าง HTML สำหรับหน้าเว็บ</p>
+                    <span class="exp">+50 EXP</span>
+                    <button onclick="go('lesson1.html')">ลุยเลย 🚀</button>
+                 </div>
+
+                 <!-- Quest 2 -->
+                  <div class="quest-card">
+                    <h3>🔗 Link</h3>
+                    <p>สร้างลิงก์ไปยังหน้าเว็บอื่น</p>
+                    <span class="exp">+50 EXP</span>
+                    <button onclick="go('lesson2.html')">ลุยเลย 🚀</button>
+                  </div>
+                  
+                  <!-- Quest 3 -->
+                   <div class="quest-card">
+                    <h3>🔤 Heading</h3>
+                    <p>สร้างหัวข้อด้วย H1 - H6</p>
+                    <span class="exp">+20 EXP</span>
+                    <button onclick="go('lesson3.html')">ลุยเลย 🚀</button>
+                   </div>
+            </div>
+          </main>
+    </div>
+    <script src="quest.js"></script>
+</body>
+</html>
