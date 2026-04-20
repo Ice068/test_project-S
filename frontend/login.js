@@ -1,3 +1,4 @@
+// ===== Elements =====
 const loginTab = document.getElementById("loginTab");
 const signupTab = document.getElementById("signupTab");
 
@@ -15,7 +16,8 @@ const submitBtn = document.getElementById("submitBtn");
 
 let mode = "login";
 
-/* ===== สลับไป Login ===== */
+
+// ===== สลับไป Login =====
 loginTab.onclick = () => {
   mode = "login";
   loginTab.classList.add("active");
@@ -28,7 +30,8 @@ loginTab.onclick = () => {
   message.textContent = "";
 };
 
-/* ===== สลับไป Signup ===== */
+
+// ===== สลับไป Signup =====
 signupTab.onclick = () => {
   mode = "signup";
   signupTab.classList.add("active");
@@ -41,63 +44,81 @@ signupTab.onclick = () => {
   message.textContent = "";
 };
 
-/* ===== Submit ===== */
+
+// ===== Submit =====
 form.onsubmit = (e) => {
   e.preventDefault();
 
-  /* ===== สมัคร ===== */
+  // ===== SIGNUP =====
   if (mode === "signup") {
+
     if (password.value !== confirmPassword.value) {
       message.style.color = "red";
       message.textContent = "❌ รหัสผ่านไม่ตรงกัน";
       return;
     }
 
-    // เก็บ user ลง localStorage
-    const user = {
+    fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.error) {
+        message.style.color = "red";
+        message.textContent = "❌ " + data.error;
+        return;
+      }
+
+      message.style.color = "#22c55e";
+      message.textContent = "🎉 สมัครสมาชิกสำเร็จ!";
+    });
+
+    return;
+  }
+
+
+  // ===== LOGIN =====
+  fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
       username: username.value,
       password: password.value
-    };
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
 
-    localStorage.setItem("user", JSON.stringify(user));
+    if (data.error) {
+      message.style.color = "red";
+      message.textContent = "❌ " + data.error;
+      return;
+    }
 
-    message.style.color = "#22c55e";
-    message.textContent = "🎉 สมัครสมาชิกสำเร็จ!";
-
-    return;
-  }
-
-  /* ===== Login ===== */
-  const savedUser = JSON.parse(localStorage.getItem("user"));
-
-  if (!savedUser) {
-    message.style.color = "red";
-    message.textContent = "❌ ยังไม่มีบัญชี กรุณาสมัครก่อน";
-    return;
-  }
-
-  if (
-    username.value === savedUser.username &&
-    password.value === savedUser.password
-  ) {
     message.style.color = "#22c55e";
     message.textContent = "✅ เข้าสู่ระบบสำเร็จ!";
 
-    // บันทึกสถานะ login
-    localStorage.setItem("loggedIn", "true");
+    // ✅ เก็บ userId
+    localStorage.setItem("userId", data.user.id);
 
-    // ลิ้งไปหน้าหลัก
     setTimeout(() => {
       window.location.href = "dashboard.html";
     }, 1000);
-
-  } else {
-    message.style.color = "red";
-    message.textContent = "❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
-  }
+  });
 };
 
-/* ===== Auto redirect ถ้า login อยู่แล้ว ===== */
-if (localStorage.getItem("loggedIn") === "true") {
+
+// ===== Auto redirect ถ้า login แล้ว =====
+if (localStorage.getItem("userId")) {
   window.location.href = "dashboard.html";
 }

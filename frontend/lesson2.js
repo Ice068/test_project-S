@@ -1,6 +1,13 @@
 function checkCode() {
   const code = document.getElementById("codeInput").value.toLowerCase();
   const result = document.getElementById("result");
+  const userId = localStorage.getItem("userId");
+
+  if (!userId) {
+    alert("❌ กรุณา login ก่อน");
+    window.location.href = "login.html";
+    return;
+  }
 
   if (
     code.includes("<a") &&
@@ -9,14 +16,29 @@ function checkCode() {
     code.includes("ไป dashboard")
   ) {
     result.style.color = "#22c55e";
-    result.textContent = "🎉 ถูกต้อง! คุณสร้างลิงก์ได้แล้ว +30 EXP";
+    result.textContent = "🎉 ถูกต้อง! +30 EXP";
 
-    let exp = parseInt(localStorage.getItem("exp")) || 0;
-    localStorage.setItem("exp", exp + 30);
-
-    setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 1500);
+    // 🔥 ส่ง EXP เข้า backend
+    fetch("http://localhost:3000/add-exp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        userId: userId,
+        exp: 30
+      })
+    })
+    .then(res => res.json())
+    .then(() => {
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 1200);
+    })
+    .catch(() => {
+      result.style.color = "red";
+      result.textContent = "❌ เพิ่ม EXP ไม่สำเร็จ";
+    });
 
   } else {
     result.style.color = "red";

@@ -214,3 +214,28 @@ body {
   transform: scale(1.05);
   box-shadow: 0 0 10px #06b6d4;
 }
+
+.menu a.active {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #22d3ee;
+  }
+  to {
+    box-shadow: 0 0 20px #22d3ee, 0 0 30px #22d3ee;
+  }
+}
+
+.menu a:active {
+  transform: scale(0.95);
+}
+
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(180deg,#111827,#020617);
+  padding: 20px;
+  border-right: 1px solid rgba(34,211,238,0.1);
+}

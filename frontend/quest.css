@@ -134,3 +134,49 @@ body {
   flex: 1;
   padding: 20px;
 }
+
+.menu a.active {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #22d3ee;
+  }
+  to {
+    box-shadow: 0 0 20px #22d3ee, 0 0 30px #22d3ee;
+  }
+}
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(180deg,#111827,#020617);
+  padding: 20px;
+  border-right: 1px solid rgba(34,211,238,0.1);
+}
+
+.menu a.active {
+  background: linear-gradient(90deg, #22d3ee, #3b82f6);
+  color: white;
+  border-radius: 14px;
+  position: relative;
+  z-index: 1;
+
+  /* glow รอบปุ่ม */
+  box-shadow: 
+    0 0 10px rgba(34,211,238,0.8),
+    0 0 25px rgba(59,130,246,0.6),
+    0 0 40px rgba(34,211,238,0.4);
+}
+
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(180deg,#111827,#020617);
+  padding: 20px;
+  border-right: 1px solid rgba(34,211,238,0.1);
+}
+button.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

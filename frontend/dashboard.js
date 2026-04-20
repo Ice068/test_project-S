@@ -1,17 +1,25 @@
-/* กันเข้าหน้าโดยไม่ login */
-if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "index.html";
+const userId = localStorage.getItem("userId");
+
+if (!userId) {
+  window.location.href = "login.html";
 }
 
-/* ดึงชื่อ user */
-const user = JSON.parse(localStorage.getItem("user"));
-if (user) {
-  document.getElementById("userName").textContent = user.username;
-  document.getElementById("profileName").textContent = user.username;
-}
+// ดึงข้อมูล user
+fetch(`http://localhost:3000/user/${userId}`)
+  .then(res => res.json())
+  .then(data => {
 
-/* logout */
+    document.getElementById("username").textContent = data.username;
+    document.getElementById("exp").textContent = data.exp;
+
+    // คำนวณ level
+    const level = Math.floor(data.exp / 100) + 1;
+    document.getElementById("level").textContent = level;
+  });
+
+
+// logout
 function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
+  localStorage.removeItem("userId");
+  window.location.href = "login.html";
 }
