@@ -6,10 +6,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// สร้าง DB
+// ===== DB =====
 const db = new sqlite3.Database("./devquest.db");
 
-// สร้างตาราง
+// ===== สร้างตาราง =====
 db.run(`
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -19,7 +19,12 @@ CREATE TABLE IF NOT EXISTS users (
 )
 `);
 
-// สมัคร
+// ===== ROOT =====
+app.get("/", (req, res) => {
+  res.send("🚀 DevQuest API ทำงานอยู่!");
+});
+
+// ===== SIGNUP =====
 app.post("/signup", (req, res) => {
   const { username, password } = req.body;
 
@@ -34,7 +39,7 @@ app.post("/signup", (req, res) => {
   );
 });
 
-// login
+// ===== LOGIN =====
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -49,50 +54,7 @@ app.post("/login", (req, res) => {
   );
 });
 
-// เพิ่ม EXP
-app.post("/add-exp", (req, res) => {
-  const { id, exp } = req.body;
-
-  db.run(
-    "UPDATE users SET exp = exp + ? WHERE id = ?",
-    [exp, id],
-    () => {
-      res.json({ message: "เพิ่ม EXP แล้ว" });
-    }
-  );
-});
-
-// ดึงข้อมูล user
-app.get("/user/:id", (req, res) => {
-  db.get(
-    "SELECT * FROM users WHERE id=?",
-    [req.params.id],
-    (err, row) => {
-      res.json(row);
-    }
-  );
-});
-
-// leaderboard
-app.get("/leaderboard", (req, res) => {
-  db.all(
-    "SELECT username, exp FROM users ORDER BY exp DESC LIMIT 10",
-    [],
-    (err, rows) => {
-      res.json(rows);
-    }
-  );
-});
-
-app.listen(3000, () => {
-  console.log("🚀 Server running on http://localhost:3000");
-});
-
-app.get("/", (req, res) => {
-  res.send("🚀 DevQuest API ทำงานอยู่!");
-});
-
-// ===== เพิ่ม EXP =====
+// ===== ADD EXP =====
 app.post("/add-exp", (req, res) => {
   const { userId, exp } = req.body;
 
@@ -107,8 +69,7 @@ app.post("/add-exp", (req, res) => {
   );
 });
 
-
-// ===== ดึง user =====
+// ===== GET USER =====
 app.get("/user/:id", (req, res) => {
   db.get(
     "SELECT id, username, exp FROM users WHERE id = ?",
@@ -121,8 +82,7 @@ app.get("/user/:id", (req, res) => {
   );
 });
 
-
-// ===== leaderboard =====
+// ===== LEADERBOARD =====
 app.get("/leaderboard", (req, res) => {
   db.all(
     "SELECT username, exp FROM users ORDER BY exp DESC LIMIT 10",
@@ -131,4 +91,9 @@ app.get("/leaderboard", (req, res) => {
       res.json(rows);
     }
   );
+});
+
+// ===== START SERVER =====
+app.listen(3000, () => {
+  console.log("🚀 Server running on http://localhost:3000");
 });
