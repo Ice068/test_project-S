@@ -159,7 +159,11 @@
 
 * จัดการ API
 
-## 
+##  Use case diagram
+![alt text](Usecase.png)
+
+## Activity Diagram
+![alt text](<Activity Diagram.png>)
 
 ## ER Diagram
 ![alt text](image.png)
