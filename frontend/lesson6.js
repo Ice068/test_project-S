@@ -1,5 +1,5 @@
 function checkCode() {
-  const code = document.getElementById("codeInput").value;
+  const code = document.getElementById("codeInput").value.toLowerCase();
   const result = document.getElementById("result");
   const userId = localStorage.getItem("userId");
 
@@ -10,12 +10,14 @@ function checkCode() {
   }
 
   if (
-    code.includes("<html>") &&
-    code.includes("<body>") &&
-    code.toLowerCase().includes("hello world")
+    code.includes("<nav>") &&
+    code.includes("<a") &&
+    code.includes("home") &&
+    code.includes("about") &&
+    code.includes("contact")
   ) {
     result.style.color = "#22c55e";
-    result.textContent = "🎉 ถูกต้อง! +50 EXP";
+    result.textContent = "🎉 ถูกต้อง! คุณสร้าง Navbar ได้แล้ว +30 EXP";
 
     fetch("http://localhost:3000/add-exp", {
       method: "POST",
@@ -23,25 +25,22 @@ function checkCode() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        userId: userId, // ✅ สำคัญ
-        exp: 50
+        userId: userId,
+        exp: 30
       })
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-
+    .then(() => {
       setTimeout(() => {
         window.location.href = "dashboard.html";
       }, 1200);
-    })
-    .catch(err => {
-      console.error(err);
-      result.textContent = "❌ เพิ่ม EXP ไม่สำเร็จ";
     });
 
   } else {
     result.style.color = "red";
-    result.textContent = "❌ ยังไม่ถูกต้อง";
+    result.textContent = "❌ ยังไม่ถูก ลองคิดว่า Navbar คือเมนูด้านบน";
   }
+}
+
+function goBack() {
+  window.location.href = "dashboard.html";
 }
