@@ -9,6 +9,13 @@ function checkCode() {
     return;
   }
 
+  // 🔒 กันทำซ้ำ
+  if (localStorage.getItem(`lesson1_done_${userId}`) === "done") {
+    result.style.color = "#facc15";
+    result.textContent = "⚠️ ทำภารกิจนี้ไปแล้ว!";
+    return;
+  }
+
   if (
     code.includes("<html>") &&
     code.includes("<body>") &&
@@ -19,24 +26,18 @@ function checkCode() {
 
     fetch("http://localhost:3000/add-exp", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: userId, // ✅ สำคัญ
-        exp: 50
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, exp: 50 })
     })
     .then(res => res.json())
-    .then(data => {
-      console.log(data);
+    .then(() => {
+      // ✅ lock + ปลดล็อค lesson ถัดไป (key เดียวกัน)
+      localStorage.setItem(`lesson1_done_${userId}`, "done");
 
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 1200);
+      setTimeout(() => window.location.href = "dashboard.html", 1200);
     })
-    .catch(err => {
-      console.error(err);
+    .catch(() => {
+      result.style.color = "red";
       result.textContent = "❌ เพิ่ม EXP ไม่สำเร็จ";
     });
 

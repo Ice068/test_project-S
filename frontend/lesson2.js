@@ -9,6 +9,13 @@ function checkCode() {
     return;
   }
 
+  // 🔒 กันทำซ้ำ
+  if (localStorage.getItem(`lesson2_done_${userId}`) === "done") {
+    result.style.color = "#facc15";
+    result.textContent = "⚠️ ทำภารกิจนี้ไปแล้ว!";
+    return;
+  }
+
   if (
     code.includes("<a") &&
     code.includes("href") &&
@@ -16,24 +23,19 @@ function checkCode() {
     code.includes("ไป dashboard")
   ) {
     result.style.color = "#22c55e";
-    result.textContent = "🎉 ถูกต้อง! +30 EXP";
+    result.textContent = "🎉 ถูกต้อง! +50 EXP";
 
-    // 🔥 ส่ง EXP เข้า backend
     fetch("http://localhost:3000/add-exp", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: userId,
-        exp: 30
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, exp: 50 })
     })
     .then(res => res.json())
     .then(() => {
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 1200);
+      // ✅ lock + ปลดล็อค lesson3
+      localStorage.setItem(`lesson2_done_${userId}`, "done");
+
+      setTimeout(() => window.location.href = "dashboard.html", 1200);
     })
     .catch(() => {
       result.style.color = "red";

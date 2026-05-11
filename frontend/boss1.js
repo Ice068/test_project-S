@@ -3,39 +3,28 @@ function checkCode() {
   const result = document.getElementById("result");
   const userId = localStorage.getItem("userId");
 
-  if (!userId) {
-    alert("❌ กรุณา login ก่อน");
-    window.location.href = "login.html";
+  if (!userId) { alert("❌ กรุณา login ก่อน"); window.location.href = "login.html"; return; }
+
+  if (localStorage.getItem(`boss1_done_${userId}`) === "done") {
+    result.style.color = "#facc15";
+    result.textContent = "⚠️ ผ่าน Boss นี้ไปแล้ว!";
     return;
   }
 
-  if (
-    code.includes("<h1") &&
-    code.includes("<img") &&
-    code.includes("<ul") &&
-    code.includes("<li") &&
-    code.includes("<a") &&
-    code.includes("<button") &&
-    (code.includes("<div") || code.includes("<section"))
-  ) {
+  if (code.includes("<h1") && code.includes("<img") && code.includes("<ul") && code.includes("<li") && code.includes("<a") && code.includes("<button") && (code.includes("<div") || code.includes("<section"))) {
     result.style.color = "#22c55e";
-    result.textContent = "👑 ผ่านด่าน BOSS! +100 EXP";
+    result.textContent = "👑 ผ่านด่าน BOSS! +200 EXP";
 
     fetch("http://localhost:3000/add-exp", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: userId,
-        exp: 100
-      })
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, exp: 200 })
     })
+    .then(res => res.json())
     .then(() => {
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 1500);
-    });
+      localStorage.setItem(`boss1_done_${userId}`, "done");
+      setTimeout(() => window.location.href = "dashboard.html", 1500);
+    })
+    .catch(() => { result.style.color = "red"; result.textContent = "❌ เพิ่ม EXP ไม่สำเร็จ"; });
 
   } else {
     result.style.color = "red";
@@ -43,6 +32,4 @@ function checkCode() {
   }
 }
 
-function goBack() {
-  window.location.href = "dashboard.html";
-}
+function goBack() { window.location.href = "dashboard.html"; }

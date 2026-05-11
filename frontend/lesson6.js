@@ -3,37 +3,28 @@ function checkCode() {
   const result = document.getElementById("result");
   const userId = localStorage.getItem("userId");
 
-  if (!userId) {
-    alert("❌ กรุณา login ก่อน");
-    window.location.href = "login.html";
+  if (!userId) { alert("❌ กรุณา login ก่อน"); window.location.href = "login.html"; return; }
+
+  if (localStorage.getItem(`lesson6_done_${userId}`) === "done") {
+    result.style.color = "#facc15";
+    result.textContent = "⚠️ เคยผ่านแล้ว ได้ EXP ไปแล้ว";
     return;
   }
 
-  if (
-    code.includes("<nav>") &&
-    code.includes("<a") &&
-    code.includes("home") &&
-    code.includes("about") &&
-    code.includes("contact")
-  ) {
+  if (code.includes("<nav>") && code.includes("<a") && code.includes("home") && code.includes("about") && code.includes("contact")) {
     result.style.color = "#22c55e";
-    result.textContent = "🎉 ถูกต้อง! คุณสร้าง Navbar ได้แล้ว +30 EXP";
+    result.textContent = "🎉 ถูกต้อง! คุณสร้าง Navbar ได้แล้ว +40 EXP";
 
     fetch("http://localhost:3000/add-exp", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: userId,
-        exp: 30
-      })
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, exp: 40 })
     })
+    .then(res => res.json())
     .then(() => {
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 1200);
-    });
+      localStorage.setItem(`lesson6_done_${userId}`, "done");
+      setTimeout(() => window.location.href = "dashboard.html", 1200);
+    })
+    .catch(() => { result.style.color = "red"; result.textContent = "❌ เพิ่ม EXP ไม่สำเร็จ"; });
 
   } else {
     result.style.color = "red";
@@ -41,6 +32,4 @@ function checkCode() {
   }
 }
 
-function goBack() {
-  window.location.href = "dashboard.html";
-}
+function goBack() { window.location.href = "dashboard.html"; }
