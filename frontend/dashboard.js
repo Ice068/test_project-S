@@ -16,10 +16,13 @@ fetch(`http://localhost:3000/user/${userId}`)
     document.querySelector(".level").textContent = `Lv.${level}`;
 
     // Rank
-    let rank = "Bronze";
-    if (data.exp >= 500) rank = "Gold";
-    else if (data.exp >= 200) rank = "Silver";
-    document.querySelector(".cards .card:nth-child(4) .big").textContent = rank;
+let rank = "🥉 Bronze";
+if (data.exp >= 800)      rank = "👑 Legend";
+else if (data.exp >= 600) rank = "💎 Diamond";
+else if (data.exp >= 400) rank = "🥇 Gold";
+else if (data.exp >= 200) rank = "🥈 Silver";
+
+document.querySelector(".cards .card:nth-child(4) .big").textContent = rank;
 
     // ✅ นับ quest ที่เสร็จแล้ว
     const questKeys = ["quest_lesson1", "quest_lesson2", "quest_lesson3"];
