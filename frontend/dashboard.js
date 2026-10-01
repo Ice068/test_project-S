@@ -1,6 +1,6 @@
 const userId = localStorage.getItem("userId");
 
-if (!userId) window.location.href = "login.html";
+if (!userId) window.location.href = "index.html";
 
 fetch(`http://localhost:3000/user/${userId}`)
   .then(res => res.json())
